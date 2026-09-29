@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Website Pribadi Salma Damayanti Harahap</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+
+        /* ================= HEADER ================= */
+
+        .header {
+            background-color: pink;
+            text-align: center;
+            padding: 30px;
+        }
+
+        .header h1 {
+            margin: 0;
+        }
+
+        /* ================= NAVBAR ================= */
+
+        .navbar {
+            background-color: #333;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            padding: 15px 20px;
+        }
+
+        .navbar a:hover {
+            background-color: pink;
+            color: black;
+        }
+
+        /* ================= LAYOUT ================= */
+
+        .row {
+            display: flex;
+            flex-wrap: wrap;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .side {
+            flex: 30%;
+            padding: 20px;
+            background-color: #fff0f5;
+        }
+
+        .main {
+            flex: 70%;
+            padding: 20px;
+            background-color: white;
+        }
+
+        /* ================= CARD ================= */
+
+        .card {
+            background-color: white;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        /* ================= FOTO PROFIL ================= */
+
+        .profil {
+            text-align: center;
+        }
+
+        .profil img {
+            width: 200px;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .profil img:hover {
+            transform: scale(1.05);
+        }
+
+        /* ================= BUTTON ================= */
+
+        .button {
+            display: inline-block;
+            padding: 10px 15px;
+            background-color: pink;
+            color: black;
+            text-decoration: none;
+            border-radius: 5px;
+            margin: 5px;
+        }
+
+        .button:hover {
+            background-color: #ff99bb;
+        }
+
+        /* ================================================= */
+        /* ================= KOLEKSI FOTO ================== */
+        /* ================================================= */
+
+        .image-slider {
+            display: flex;
+            overflow-x: auto;
+            gap: 15px;
+            padding: 10px;
+            scroll-behavior: smooth;
+        }
+
+        .image-column {
+            min-width: 250px;
+            flex-shrink: 0;
+        }
+
+        .image-slider img {
+            width: 250px;
+            height: 180px;
+            object-fit: cover;
+            display: block;
+            margin-bottom: 15px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .image-slider img:hover {
+            transform: scale(1.03);
+        }
+
+        /* ================= EFEK GAMBAR ================= */
+
+        .gambar-efek {
+            width: 250px;
+            height: 180px;
+            object-fit: cover;
+            display: block;
+            margin-bottom: 15px;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+        .grayscale {
+            filter: grayscale(100%);
+        }
+
+        .opacity {
+            opacity: 0.5;
+        }
+
+        /* ================= SCROLLBAR ================= */
+
+        .image-slider::-webkit-scrollbar {
+            height: 8px;
+        }
+
+        .image-slider::-webkit-scrollbar-thumb {
+            background-color: #888;
+            border-radius: 10px;
+        }
+
+        .image-slider::-webkit-scrollbar-track {
+            background-color: #eee;
+        }
+
+        /* ================================================= */
+        /* ================= RESPONSIVE GALLERY ============ */
+        /* ================================================= */
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+        }
+
+        .gallery img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .gallery img:hover {
+            transform: scale(1.03);
+        }
+
+        /* ================= KONTAK ================= */
+
+        input,
+        textarea {
+            width: 100%;
+            padding: 10px;
+            margin-top: 5px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: pink;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #ff99bb;
+        }
+
+        /* ================= FOOTER ================= */
+
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+
+        /* ================================================= */
+        /* ================= MODAL FOTO ==================== */
+        /* ================================================= */
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.9);
+            text-align: center;
+            padding-top: 50px;
+        }
+
+        .modal img {
+            max-width: 90%;
+            max-height: 80vh;
+            border-radius: 10px;
+        }
+
+        .close {
+            position: absolute;
+            right: 30px;
+            top: 10px;
+            color: white;
+            font-size: 40px;
+            cursor: pointer;
+        }
+
+        /* ================= RESPONSIVE ================= */
+
+        @media screen and (max-width: 800px) {
+
+            .side,
+            .main {
+                flex: 100%;
+            }
+
+            .gallery {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+        }
+
+        @media screen and (max-width: 500px) {
+
+            .navbar {
+                flex-direction: column;
+            }
+
+            .navbar a {
+                text-align: center;
+            }
+
+            .gallery {
+                grid-template-columns: 1fr;
+            }
+
+            .image-column {
+                min-width: 220px;
+            }
+
+            .image-slider img {
+                width: 220px;
+                height: 170px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- ================= HEADER ================= -->
+
+    <div class="header">
+
+        <h1>Website Pribadi Salma Damayanti Harahap</h1>
+
+        <p>
+            Selamat Datang di Website Pribadi Saya
+        </p>
+
+    </div>
+
+
+    <!-- ================= NAVBAR ================= -->
+
+    <div class="navbar">
+
+        <a href="#home">Home</a>
+
+        <a href="#tentang">
+            Tentang Saya
+        </a>
+
+        <a href="#galeri">
+            Galeri
+        </a>
+
+        <a href="#kontak">
+            Kontak
+        </a>
+
+    </div>
+
+
+    <!-- ================= CONTENT ================= -->
+
+    <div class="row">
+
+
+        <!-- ================= SIDEBAR ================= -->
+
+        <div class="side">
+
+
+            <!-- PROFIL -->
+
+    <div style="width: 180px; height: 180px; border-radius: 24px; overflow: hidden; margin: 0 auto 25px; box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);">
+        <img src="gambar5.jpeg" onclick="zoomImage(this)" alt="Foto Profil" style="width: 100%; height: 100%; object-fit: cover; object-position: center; cursor: pointer;">
+    </div>
+    
+    <h2 style="font-family: 'Playfair Display', serif; font-size: 26px; margin-bottom: 25px; color: #1a1a1a; font-weight: 600; text-align: center;">Profil Saya</h2>
+    
+    <div style="text-align: left; background-color: #fafafa; padding: 20px; border-radius: 16px; border: 1px solid #eaeaea; display: flex; flex-direction: column; gap: 14px; font-family: 'Plus Jakarta Sans', sans-serif;">
+        <div style="display: flex; flex-direction: column; gap: 2px;">
+            <span style="font-weight: 600; color: #777777; font-size: 11px; text-transform: uppercase; letter-spacing: 1px;">Nama</span>
+            <span style="font-size: 15px; color: #222222; font-weight: 500; line-height: 1.4;">Salma Damayanti Harahap</span>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 2px;">
+            <span style="font-weight: 600; color: #777777; font-size: 11px; text-transform: uppercase; letter-spacing: 1px;">Program Studi</span>
+            <span style="font-size: 15px; color: #222222; font-weight: 500; line-height: 1.4;">Teknologi Informasi</span>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 2px;">
+            <span style="font-weight: 600; color: #777777; font-size: 11px; text-transform: uppercase; letter-spacing: 1px;">Hobi</span>
+            <span style="font-size: 15px; color: #222222; font-weight: 500; line-height: 1.4;">Fotografi, Musik, dan Traveling</span>
+        </div>
+    </div>
+
+<!-- ========================================================================= -->
+
+
+            <!-- SOSIAL MEDIA -->
+
+            <div class="card">
+
+                <h2>Sosial Media</h2>
+
+                <a
+                    href="https://www.instagram.com/"
+                    target="_blank"
+                    class="button"
+                >
+                    Instagram
+                </a>
+
+                <a
+                    href="https://wa.me/6283892157416"
+                    target="_blank"
+                    class="button"
+                >
+                    WhatsApp
+                </a>
+
+                <a
+                    href="salmadamayantiharahap@gmail.com"
+                    class="button"
+                >
+                    Email
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <!-- ================= MAIN ================= -->
+
+        <div class="main">
+
+
+            <!-- HOME -->
+
+            <div class="card" id="home">
+
+                <h2>Home</h2>
+
+                <p>
+                    Selamat datang di website pribadi saya.
+                    Website ini dibuat menggunakan HTML dan CSS
+                    untuk menampilkan informasi pribadi,
+                    koleksi foto, galeri, dan kontak.
+                </p>
+
+            </div>
+
+
+            <!-- TENTANG SAYA -->
+
+            <div class="card" id="tentang">
+
+                <h2>Tentang Saya</h2>
+
+                <p>
+                    Halo, nama saya Salma Damayanti Harahap.
+                    Saya adalah mahasiswa Program Studi
+                    Teknologi Informasi.
+                </p>
+
+                <p>
+                    Saya tertarik dengan teknologi,
+                    pemrograman, desain website,
+                    dan berbagai hal yang berhubungan
+                    dengan dunia komputer.
+                </p>
+
+            </div>
+
+
+            <!-- ================================================= -->
+            <!-- ================= KOLEKSI SAYA ================== -->
+            <!-- ================================================= -->
+
+            <div class="card">
+
+                <h2>Koleksi Saya</h2>
+
+                <div class="image-slider">
+
+
+                    <div class="image-column">
+
+                        <img
+                            src="gambar16.jpeg"
+                            onclick="zoomImage(this)"
+                        >
+
+                        <img
+                            src="gambar2.jpeg"
+                            onclick="zoomImage(this)"
+                        >
+
+                        <img
+                            src="gambar3.jpeg"
+                            onclick="zoomImage(this)"
+                        >
+
+                        <img
+                            src="gambar22.jpeg"
+                            onclick="zoomImage(this)"
+                        >
+
+                    </div>
+
+
+                    <div class="image-column">
+
+                        <img
+                            src="gambar5.jpeg"
+                            onclick="zoomImage(this)"
+                        >
+
+                        <img
+                            src="gambar6.jpeg"
+                            onclick="zoomImage(this)"
+                        >
+
+                        <img
+                            src="gambar7.jpeg"
+                            onclick="zoomImage(this)"
+                        >
+
+                    </div>
+
+
+                    <div class="image-column">
+
+                        <img
+                            src="gambar8.jpeg"
+                            onclick="zoomImage(this)"
+                        >
+
+                        <img
+                            src="gambar9.jpeg"
+                            onclick="zoomImage(this)"
+                        >
+
+                        <img
+                            src="gambar10.jpeg"
+                            onclick="zoomImage(this)"
+                        >
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+
+            <!-- ================================================= -->
+            <!-- ================= EFEK GAMBAR =================== -->
+            <!-- ================================================= -->
+
+            <div class="card">
+
+                <h2>pemandangan dipantai</h2>
+
+                <div class="image-slider">
+
+
+                    <div class="image-column">
+
+                        <img
+                            src="gambar6.jpeg"
+                            class="gambar-efek"
+                            onclick="zoomImage(this)"
+                        >
+
+                        <img
+                            src="gambar8.jpeg"
+                            class="gambar-efek grayscale"
+                            onclick="zoomImage(this)"
+                        >
+
+                        <img
+                            src="gambar3.jpeg"
+                            class="gambar-efek opacity"
+                            onclick="zoomImage(this)"
+                        >
+
+                        <img
+                            src="gambar2.jpeg"
+                            class="gambar-efek"
+                            onclick="zoomImage(this)"
+                        >
+
+                    </div>
+
+
+                    <div class="image-column">
+
+                        <img
+                            src="gambar13.jpeg"
+                            class="gambar-efek grayscale"
+                            onclick="zoomImage(this)"
+                        >
+
+                        <img
+                            src="gambar23.jpeg"
+                            class="gambar-efek"
+                            onclick="zoomImage(this)"
+                        >
+
+                        <img
+                            src="gambar26.jpeg"
+                            class="gambar-efek opacity"
+                            onclick="zoomImage(this)"
+                        >
+
+                    </div>
+
+
+                    <div class="image-column">
+
+                        <img
+                            src="gambar24.jpeg"
+                            class="gambar-efek"
+                            onclick="zoomImage(this)"
+                        >
+
+                        <img
+                            src="gambar14.jpeg"
+                            class="gambar-efek grayscale"
+                            onclick="zoomImage(this)"
+                        >
+
+                        <img
+                            src="gambar11.jpeg"
+                            class="gambar-efek opacity"
+                            onclick="zoomImage(this)"
+                        >
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+
+            <!-- ================================================= -->
+            <!-- ============== RESPONSIVE GALLERY =============== -->
+            <!-- ================================================= -->
+
+            <div class="card" id="galeri">
+
+                <h2>cute cat gallery</h2>
+
+                <div class="gallery">
+
+                    <img
+                        src="gambar30.jpeg"
+                        onclick="zoomImage(this)"
+                    >
+
+                    <img
+                        src="gambar32.jpeg"
+                        onclick="zoomImage(this)"
+                    >
+
+                    <img
+                        src="gambar33.jpeg"
+                        onclick="zoomImage(this)"
+                    >
+
+                    <img
+                        src="gambar31.jpeg"
+                        onclick="zoomImage(this)"
+                    >
+
+                    <img
+                        src="gambar35.jpeg"
+                        onclick="zoomImage(this)"
+                    >
+
+                    <img
+                        src="gambar36.jpeg"
+                        onclick="zoomImage(this)"
+                    >
+
+                    <img
+                        src="gambar37.jpeg"
+                        onclick="zoomImage(this)"
+                    >
+
+                    <img
+                        src="gambar38.jpeg"
+                        onclick="zoomImage(this)"
+                    >
+
+                    <img
+                        src="gambar39.jpeg"
+                        onclick="zoomImage(this)"
+                    >
+
+                    <img
+                        src="gambar34.jpeg"
+                        onclick="zoomImage(this)"
+                    >
+
+                </div>
+
+            </div>
+
+
+            <!-- ================= KONTAK ================= -->
+
+            <div class="card" id="kontak">
+
+                <h2>Kontak Saya</h2>
+
+                <form>
+
+                    <label>
+                        Nama
+                    </label>
+
+                    <input
+                        type="text"
+                        placeholder="Masukkan nama"
+                    >
+
+
+                    <label>
+                        Email
+                    </label>
+
+                    <input
+                        type="email"
+                        placeholder="Masukkan email"
+                    >
+
+
+                    <label>
+                        Pesan
+                    </label>
+
+                    <textarea
+                        rows="5"
+                        placeholder="Masukkan pesan"
+                    ></textarea>
+
+
+                    <button type="submit">
+                        Kirim
+                    </button>
+
+                </form>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer>
+
+        <p>
+            © 2026 Website Pribadi Salma Damayanti Harahap
+        </p>
+
+    </footer>
+
+
+    <!-- ================================================= -->
+    <!-- ================= MODAL FOTO ==================== -->
+    <!-- ================================================= -->
+
+    <div
+        id="imageModal"
+        class="modal"
+    >
+
+        <span
+            class="close"
+            onclick="closeZoom()"
+        >
+            &times;
+        </span>
+
+        <img
+            id="zoomedImage"
+        >
+
+    </div>
+
+
+    <!-- ================= JAVASCRIPT ================= -->
+
+    <script>
+
+        function zoomImage(image) {
+
+            var modal =
+                document.getElementById("imageModal");
+
+            var zoomedImage =
+                document.getElementById("zoomedImage");
+
+            modal.style.display = "block";
+
+            zoomedImage.src = image.src;
+
+        }
+
+
+        function closeZoom() {
+
+            document.getElementById("imageModal")
+                .style.display = "none";
+
+        }
+
+
+        window.onclick = function(event) {
+
+            var modal =
+                document.getElementById("imageModal");
+
+            if (event.target == modal) {
+
+                modal.style.display = "none";
+
+            }
+
+        }
+
+    </script>
+
+
+</body>
+</html>
