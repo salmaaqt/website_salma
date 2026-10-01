@@ -1,838 +1,1135 @@
 <!DOCTYPE html>
 <html lang="id">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Website Pribadi Salma Damayanti Harahap</title>
+    <title>Salma's Little Corner</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&display=swap" rel="stylesheet">
 
     <style>
+        :root {
+            --pink: #e8a6b8;
+            --pink-light: #f9e9ed;
+            --cream: #fffaf5;
+            --brown: #49352f;
+            --muted: #8c7770;
+            --white: #ffffff;
+            --border: #eadbd5;
+        }
 
         * {
             box-sizing: border-box;
+            scroll-behavior: smooth;
         }
 
         body {
             margin: 0;
-            font-family: Arial, sans-serif;
-            background-color: #f5f5f5;
-            color: #333;
+            font-family: 'DM Sans', sans-serif;
+            background: var(--cream);
+            color: var(--brown);
+            line-height: 1.7;
         }
 
-        /* ================= HEADER ================= */
+        img {
+            max-width: 100%;
+        }
+
+        /* HEADER */
 
         .header {
-            background-color: pink;
+            position: relative;
+            overflow: hidden;
+            padding: 65px 20px 55px;
             text-align: center;
-            padding: 30px;
+            background:
+                radial-gradient(circle at 10% 20%, #fff 0 3px, transparent 4px),
+                radial-gradient(circle at 90% 75%, #fff 0 4px, transparent 5px),
+                linear-gradient(135deg, #f6dce3, #fbeee5, #f2dce5);
+        }
+
+        .header::before {
+            content: "✿";
+            position: absolute;
+            top: 15px;
+            left: 8%;
+            font-size: 65px;
+            color: rgba(164, 103, 121, 0.2);
+            transform: rotate(-20deg);
+        }
+
+        .header::after {
+            content: "♡";
+            position: absolute;
+            right: 9%;
+            bottom: 15px;
+            font-size: 75px;
+            color: rgba(164, 103, 121, 0.25);
+            transform: rotate(15deg);
+        }
+
+        .eyebrow {
+            display: inline-block;
+            padding: 6px 16px;
+            border: 1px solid rgba(120, 76, 86, 0.25);
+            border-radius: 30px;
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
         }
 
         .header h1 {
-            margin: 0;
+            margin: 20px 0 8px;
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(32px, 5vw, 56px);
+            line-height: 1.2;
+            font-weight: 600;
         }
 
-        /* ================= NAVBAR ================= */
+        .header h1 span {
+            color: #b66d83;
+            font-style: italic;
+        }
+
+        .header p {
+            color: #765d58;
+            font-size: 14px;
+        }
+
+        .header-note {
+            margin-top: 25px;
+            font-size: 12px;
+            letter-spacing: 2px;
+            color: #876b65;
+        }
+
+        /* NAVIGATION */
 
         .navbar {
-            background-color: #333;
+            position: sticky;
+            top: 0;
+            z-index: 100;
             display: flex;
             justify-content: center;
             flex-wrap: wrap;
+            gap: 8px;
+            padding: 12px;
+            background: rgba(255, 250, 245, 0.95);
+            border-bottom: 1px solid var(--border);
+            backdrop-filter: blur(12px);
         }
 
         .navbar a {
-            color: white;
+            padding: 9px 17px;
+            border-radius: 25px;
+            color: var(--brown);
             text-decoration: none;
-            padding: 15px 20px;
+            font-size: 13px;
+            transition: 0.3s;
         }
 
         .navbar a:hover {
-            background-color: pink;
-            color: black;
+            background: var(--brown);
+            color: white;
         }
 
-        /* ================= LAYOUT ================= */
+        /* PAGE LAYOUT */
 
         .row {
-            display: flex;
-            flex-wrap: wrap;
+            display: grid;
+            grid-template-columns: 280px minmax(0, 1fr);
+            gap: 25px;
             max-width: 1200px;
-            margin: auto;
+            margin: 35px auto;
+            padding: 0 20px;
+            align-items: start;
         }
 
         .side {
-            flex: 30%;
-            padding: 20px;
-            background-color: #fff0f5;
+            min-width: 0;
         }
 
         .main {
-            flex: 70%;
-            padding: 20px;
-            background-color: white;
+            min-width: 0;
         }
 
-        /* ================= CARD ================= */
+        /* CARD */
 
         .card {
-            background-color: white;
-            padding: 20px;
-            margin-bottom: 20px;
-            border-radius: 10px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            padding: 25px;
+            margin-bottom: 25px;
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            box-shadow: 0 8px 25px rgba(91, 58, 49, 0.045);
         }
 
-        /* ================= FOTO PROFIL ================= */
+        .section-label {
+            margin: 0 0 5px;
+            color: #b66d83;
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
 
-        .profil {
+        .card h2 {
+            margin: 0 0 15px;
+            font-family: 'Playfair Display', serif;
+            font-size: 27px;
+            font-weight: 600;
+            line-height: 1.3;
+        }
+
+        .card p {
+            color: #776660;
+            font-size: 14px;
+        }
+
+        /* PROFILE */
+
+        .profile-card {
+            padding: 25px 20px;
             text-align: center;
+            background: #f8e8ec;
+            border: 1px solid #efd4dc;
+            border-radius: 20px;
+            margin-bottom: 20px;
         }
 
-        .profil img {
-            width: 200px;
-            height: 200px;
+        .profile-photo {
+            width: 155px;
+            height: 175px;
+            margin: 0 auto 20px;
+            padding: 6px;
+            background: white;
+            border: 1px solid #e8c3ce;
+            border-radius: 80px 80px 20px 20px;
+            box-shadow: 0 8px 20px rgba(111, 65, 79, 0.1);
+        }
+
+        .profile-photo img {
+            width: 100%;
+            height: 100%;
             object-fit: cover;
-            border-radius: 50%;
+            border-radius: 75px 75px 15px 15px;
             cursor: pointer;
-            transition: 0.3s;
         }
 
-        .profil img:hover {
-            transform: scale(1.05);
+        .profile-card h2 {
+            margin: 0 0 5px;
+            font-family: 'Playfair Display', serif;
+            font-size: 23px;
         }
 
-        /* ================= BUTTON ================= */
+        .profile-card .small-note {
+            margin: 0 0 20px;
+            color: #a16c7c;
+            font-size: 12px;
+        }
 
-        .button {
-            display: inline-block;
-            padding: 10px 15px;
-            background-color: pink;
-            color: black;
+        .profile-info {
+            padding: 15px;
+            background: rgba(255,255,255,0.75);
+            border-radius: 14px;
+            text-align: left;
+        }
+
+        .info-item {
+            padding: 10px 0;
+            border-bottom: 1px dashed #e8d4d9;
+        }
+
+        .info-item:last-child {
+            border-bottom: none;
+        }
+
+        .info-label {
+            display: block;
+            color: #a16c7c;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+        }
+
+        .info-value {
+            display: block;
+            margin-top: 3px;
+            font-size: 13px;
+            font-weight: 600;
+            overflow-wrap: anywhere;
+        }
+
+        /* SOCIAL MEDIA */
+
+        .social-card h2 {
+            font-size: 23px;
+        }
+
+        .social-link {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 10px;
+            padding: 11px 13px;
+            background: #fff8f5;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            color: var(--brown);
             text-decoration: none;
+            font-size: 13px;
+            transition: 0.25s;
+        }
+
+        .social-link:hover {
+            background: var(--pink-light);
+            border-color: var(--pink);
+            transform: translateX(3px);
+        }
+
+        /* HOME INTRO */
+
+        .intro-card {
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(120deg, #fff, #fff7f7);
+        }
+
+        .intro-card::after {
+            content: "♡";
+            position: absolute;
+            top: 12px;
+            right: 22px;
+            color: #f1d8df;
+            font-size: 75px;
+            line-height: 1;
+        }
+
+        .intro-card h2 {
+            position: relative;
+            z-index: 1;
+            font-size: 32px;
+        }
+
+        .intro-card .intro-text {
+            position: relative;
+            z-index: 1;
+            max-width: 620px;
+        }
+
+        .signature {
+            margin-top: 20px;
+            color: #b66d83;
+            font-family: 'Playfair Display', serif;
+            font-size: 19px;
+            font-style: italic;
+        }
+
+        /* LITTLE DETAILS */
+
+        .divider {
+            width: 55px;
+            height: 3px;
+            margin: 15px 0;
+            background: var(--pink);
             border-radius: 5px;
-            margin: 5px;
         }
 
-        .button:hover {
-            background-color: #ff99bb;
+        .interest-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 18px;
         }
 
-        /* ================================================= */
-        /* ================= KOLEKSI FOTO ================== */
-        /* ================================================= */
+        .interest {
+            padding: 7px 12px;
+            background: #f9e9ed;
+            border-radius: 30px;
+            color: #8b5668;
+            font-size: 12px;
+        }
+
+        /* HORIZONTAL PHOTO COLLECTION */
 
         .image-slider {
             display: flex;
-            overflow-x: auto;
             gap: 15px;
-            padding: 10px;
-            scroll-behavior: smooth;
+            overflow-x: auto;
+            padding: 5px 3px 15px;
+            scroll-snap-type: x mandatory;
+            scrollbar-width: thin;
+            scrollbar-color: #d5a5b3 #f7eeee;
         }
 
         .image-column {
-            min-width: 250px;
-            flex-shrink: 0;
+            display: flex;
+            flex-direction: column;
+            flex: 0 0 220px;
+            gap: 13px;
+            scroll-snap-align: start;
         }
 
         .image-slider img {
-            width: 250px;
-            height: 180px;
-            object-fit: cover;
             display: block;
-            margin-bottom: 15px;
-            border-radius: 10px;
+            width: 100%;
+            height: 165px;
+            margin: 0;
+            object-fit: cover;
+            border-radius: 13px;
             cursor: pointer;
-            transition: 0.3s;
+            transition: transform 0.3s, box-shadow 0.3s;
         }
 
         .image-slider img:hover {
-            transform: scale(1.03);
+            transform: translateY(-4px);
+            box-shadow: 0 8px 18px rgba(73, 53, 47, 0.15);
         }
 
-        /* ================= EFEK GAMBAR ================= */
+        .scroll-hint {
+            margin: 0 0 10px !important;
+            font-size: 12px !important;
+            color: #a48c84 !important;
+        }
+
+        /* IMAGE EFFECTS */
 
         .gambar-efek {
-            width: 250px;
-            height: 180px;
-            object-fit: cover;
-            display: block;
-            margin-bottom: 15px;
-            border-radius: 10px;
-            cursor: pointer;
+            filter: none;
         }
 
-        .grayscale {
+        .gambar-efek.grayscale {
             filter: grayscale(100%);
         }
 
-        .opacity {
-            opacity: 0.5;
+        .gambar-efek.opacity {
+            opacity: 0.55;
         }
 
-        /* ================= SCROLLBAR ================= */
-
-        .image-slider::-webkit-scrollbar {
-            height: 8px;
-        }
-
-        .image-slider::-webkit-scrollbar-thumb {
-            background-color: #888;
-            border-radius: 10px;
-        }
-
-        .image-slider::-webkit-scrollbar-track {
-            background-color: #eee;
-        }
-
-        /* ================================================= */
-        /* ================= RESPONSIVE GALLERY ============ */
-        /* ================================================= */
+        /* RESPONSIVE CAT GALLERY */
 
         .gallery {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 15px;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 12px;
         }
 
-        .gallery img {
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            aspect-ratio: 4 / 5;
+            border-radius: 14px;
+            background: #f6e7e8;
+        }
+
+        .gallery-item img {
+            display: block;
             width: 100%;
-            height: 200px;
+            height: 100%;
             object-fit: cover;
-            border-radius: 10px;
             cursor: pointer;
-            transition: 0.3s;
+            transition: transform 0.45s;
         }
 
-        .gallery img:hover {
-            transform: scale(1.03);
+        .gallery-item:hover img {
+            transform: scale(1.08);
         }
 
-        /* ================= KONTAK ================= */
+        .gallery-item::after {
+            content: "♡";
+            position: absolute;
+            right: 9px;
+            bottom: 4px;
+            color: white;
+            font-size: 23px;
+            text-shadow: 0 1px 5px #555;
+            pointer-events: none;
+        }
+
+        /* CONTACT FORM */
+
+        .form-note {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: var(--brown);
+            font-size: 13px;
+            font-weight: 600;
+        }
 
         input,
         textarea {
             width: 100%;
-            padding: 10px;
-            margin-top: 5px;
-            margin-bottom: 15px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
+            padding: 12px 14px;
+            margin-bottom: 16px;
+            background: #fffdfb;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            outline: none;
+            color: var(--brown);
+            font-family: inherit;
+            font-size: 13px;
+            transition: border-color 0.2s;
         }
 
-        button {
-            padding: 10px 20px;
-            background-color: pink;
+        input:focus,
+        textarea:focus {
+            border-color: #cf8fa3;
+        }
+
+        textarea {
+            resize: vertical;
+        }
+
+        .submit-btn {
+            padding: 12px 22px;
+            background: var(--brown);
+            color: white;
             border: none;
-            border-radius: 5px;
+            border-radius: 30px;
+            font-family: inherit;
+            font-size: 13px;
             cursor: pointer;
+            transition: 0.25s;
         }
 
-        button:hover {
-            background-color: #ff99bb;
+        .submit-btn:hover {
+            background: #9b6374;
+            transform: translateY(-2px);
         }
 
-        /* ================= FOOTER ================= */
+        /* FOOTER */
 
         footer {
-            background-color: #333;
-            color: white;
+            padding: 35px 20px;
+            background: #49352f;
+            color: #fff4ef;
             text-align: center;
-            padding: 20px;
         }
 
-        /* ================================================= */
-        /* ================= MODAL FOTO ==================== */
-        /* ================================================= */
+        footer .footer-title {
+            margin: 0;
+            font-family: 'Playfair Display', serif;
+            font-size: 23px;
+        }
+
+        footer p {
+            margin: 8px 0;
+            color: #e5d3cb;
+            font-size: 12px;
+        }
+
+        footer .footer-heart {
+            color: #efb4c5;
+        }
+
+        /* IMAGE ZOOM MODAL */
 
         .modal {
             display: none;
             position: fixed;
             z-index: 9999;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0,0,0,0.9);
-            text-align: center;
-            padding-top: 50px;
+            inset: 0;
+            align-items: center;
+            justify-content: center;
+            padding: 55px 15px 25px;
+            background: rgba(35, 24, 23, 0.94);
+            backdrop-filter: blur(5px);
+        }
+
+        .modal.show {
+            display: flex;
         }
 
         .modal img {
-            max-width: 90%;
-            max-height: 80vh;
-            border-radius: 10px;
+            display: block;
+            max-width: 92%;
+            max-height: 82vh;
+            object-fit: contain;
+            border: 4px solid rgba(255,255,255,0.8);
+            border-radius: 12px;
+            animation: appear 0.25s ease;
         }
 
         .close {
             position: absolute;
-            right: 30px;
             top: 10px;
+            right: 22px;
             color: white;
             font-size: 40px;
+            line-height: 1;
             cursor: pointer;
+            background: none;
+            border: none;
         }
 
-        /* ================= RESPONSIVE ================= */
+        @keyframes appear {
+            from {
+                opacity: 0;
+                transform: scale(0.94);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
 
-        @media screen and (max-width: 800px) {
+        /* RESPONSIVE */
 
-            .side,
-            .main {
-                flex: 100%;
+        @media (max-width: 850px) {
+            .row {
+                grid-template-columns: 1fr;
+                max-width: 700px;
+                gap: 10px;
+                margin-top: 25px;
+            }
+
+            .side {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 15px;
+                align-items: start;
+            }
+
+            .profile-card,
+            .social-card {
+                margin-bottom: 15px;
             }
 
             .gallery {
-                grid-template-columns: repeat(2, 1fr);
+                grid-template-columns: repeat(3, minmax(0, 1fr));
             }
-
         }
 
-        @media screen and (max-width: 500px) {
+        @media (max-width: 550px) {
+            .header {
+                padding: 48px 18px 40px;
+            }
+
+            .header::before {
+                left: 3%;
+                font-size: 42px;
+            }
+
+            .header::after {
+                right: 3%;
+                font-size: 50px;
+            }
+
+            .header h1 {
+                font-size: 34px;
+            }
+
+            .header p {
+                font-size: 13px;
+            }
 
             .navbar {
-                flex-direction: column;
+                gap: 3px;
+                padding: 8px 4px;
             }
 
             .navbar a {
-                text-align: center;
+                padding: 8px 10px;
+                font-size: 12px;
             }
 
-            .gallery {
+            .row {
+                padding: 0 12px;
+                margin: 18px auto;
+            }
+
+            .side {
                 grid-template-columns: 1fr;
+                gap: 0;
+            }
+
+            .card {
+                padding: 19px;
+                margin-bottom: 17px;
+                border-radius: 16px;
+            }
+
+            .card h2 {
+                font-size: 24px;
+            }
+
+            .intro-card h2 {
+                font-size: 29px;
             }
 
             .image-column {
-                min-width: 220px;
+                flex-basis: 190px;
             }
 
             .image-slider img {
-                width: 220px;
-                height: 170px;
+                height: 150px;
             }
 
+            .gallery {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 9px;
+            }
+
+            .gallery-item {
+                border-radius: 11px;
+            }
+
+            .modal img {
+                max-width: 96%;
+                max-height: 78vh;
+            }
         }
 
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                scroll-behavior: auto !important;
+                animation-duration: 0.01ms !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+/* Ukuran foto kenangan */
+.memory-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 15px;
+}
+
+.memory-item img {
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+    display: block;
+    border-radius: 10px;
+}
+
+/* Ukuran foto efek */
+.effect-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 15px;
+}
+
+.effect-item img {
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+    display: block;
+    border-radius: 10px;
+}
+
+/* Ukuran galeri kucing */
+.cat-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 12px;
+}
+
+.cat-grid img {
+    width: 100%;
+    height: 130px;
+    object-fit: cover;
+    display: block;
+    border-radius: 10px;
+}
+
+/* Tampilan HP */
+@media (max-width: 600px) {
+    .memory-grid,
+    .effect-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .cat-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .memory-item img,
+    .effect-item img,
+    .cat-grid img {
+        height: 120px;
+    }
+}
+
     </style>
-
 </head>
-
 
 <body>
 
+    <!-- HEADER -->
 
-    <!-- ================= HEADER ================= -->
+    <header class="header" id="home">
+        <span class="eyebrow">A little corner of my world</span>
 
-    <div class="header">
+        <h1>Salma <span>Damayanti</span><br>Harahap</h1>
 
-        <h1>Website Pribadi Salma Damayanti Harahap</h1>
+        <p>Welcome to my personal space ♡</p>
 
-        <p>
-            Selamat Datang di Website Pribadi Saya
-        </p>
+        <div class="header-note">
+            STORIES · MEMORIES · LITTLE THINGS
+        </div>
+    </header>
 
-    </div>
+    <!-- NAVBAR -->
 
-
-    <!-- ================= NAVBAR ================= -->
-
-    <div class="navbar">
-
+    <nav class="navbar">
         <a href="#home">Home</a>
+        <a href="#tentang">Tentang Saya</a>
+        <a href="#koleksi">Koleksi</a>
+        <a href="#galeri">Galeri Kucing</a>
+        <a href="#kontak">Kontak</a>
+    </nav>
 
-        <a href="#tentang">
-            Tentang Saya
-        </a>
-
-        <a href="#galeri">
-            Galeri
-        </a>
-
-        <a href="#kontak">
-            Kontak
-        </a>
-
-    </div>
-
-
-    <!-- ================= CONTENT ================= -->
+    <!-- CONTENT -->
 
     <div class="row">
 
+        <!-- SIDEBAR -->
 
-        <!-- ================= SIDEBAR ================= -->
+        <aside class="side">
 
-        <div class="side">
+            <section class="profile-card">
+                <div class="profile-photo">
+                    <img
+                        src="gambar5.jpeg"
+                        alt="Foto profil Salma"
+                        onclick="zoomImage(this)"
+                    >
+                </div>
 
+                <h2>Profil Saya</h2>
+                <p class="small-note">♡ A little about me ♡</p>
 
-            <!-- PROFIL -->
+                <div class="profile-info">
+                    <div class="info-item">
+                        <span class="info-label">Nama</span>
+                        <span class="info-value">Salma Damayanti Harahap</span>
+                    </div>
 
-    <div style="width: 180px; height: 180px; border-radius: 24px; overflow: hidden; margin: 0 auto 25px; box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);">
-        <img src="gambar5.jpeg" onclick="zoomImage(this)" alt="Foto Profil" style="width: 100%; height: 100%; object-fit: cover; object-position: center; cursor: pointer;">
-    </div>
-    
-    <h2 style="font-family: 'Playfair Display', serif; font-size: 26px; margin-bottom: 25px; color: #1a1a1a; font-weight: 600; text-align: center;">Profil Saya</h2>
-    
-    <div style="text-align: left; background-color: #fafafa; padding: 20px; border-radius: 16px; border: 1px solid #eaeaea; display: flex; flex-direction: column; gap: 14px; font-family: 'Plus Jakarta Sans', sans-serif;">
-        <div style="display: flex; flex-direction: column; gap: 2px;">
-            <span style="font-weight: 600; color: #777777; font-size: 11px; text-transform: uppercase; letter-spacing: 1px;">Nama</span>
-            <span style="font-size: 15px; color: #222222; font-weight: 500; line-height: 1.4;">Salma Damayanti Harahap</span>
-        </div>
-        <div style="display: flex; flex-direction: column; gap: 2px;">
-            <span style="font-weight: 600; color: #777777; font-size: 11px; text-transform: uppercase; letter-spacing: 1px;">Program Studi</span>
-            <span style="font-size: 15px; color: #222222; font-weight: 500; line-height: 1.4;">Teknologi Informasi</span>
-        </div>
-        <div style="display: flex; flex-direction: column; gap: 2px;">
-            <span style="font-weight: 600; color: #777777; font-size: 11px; text-transform: uppercase; letter-spacing: 1px;">Hobi</span>
-            <span style="font-size: 15px; color: #222222; font-weight: 500; line-height: 1.4;">Fotografi, Musik, dan Traveling</span>
-        </div>
-    </div>
+                    <div class="info-item">
+                        <span class="info-label">Program Studi</span>
+                        <span class="info-value">Teknologi Informasi</span>
+                    </div>
 
-<!-- ========================================================================= -->
+                    <div class="info-item">
+                        <span class="info-label">Hobi</span>
+                        <span class="info-value">Fotografi, Musik, dan Traveling</span>
+                    </div>
+                </div>
+            </section>
 
-
-            <!-- SOSIAL MEDIA -->
-
-            <div class="card">
-
+            <section class="card social-card">
+                <p class="section-label">Find me here</p>
                 <h2>Sosial Media</h2>
 
                 <a
                     href="https://www.instagram.com/"
                     target="_blank"
-                    class="button"
+                    rel="noopener noreferrer"
+                    class="social-link"
                 >
-                    Instagram
+                    <span>Instagram</span>
+                    <span>↗</span>
                 </a>
 
                 <a
                     href="https://wa.me/6283892157416"
                     target="_blank"
-                    class="button"
+                    rel="noopener noreferrer"
+                    class="social-link"
                 >
-                    WhatsApp
+                    <span>WhatsApp</span>
+                    <span>↗</span>
                 </a>
 
                 <a
-                    href="salmadamayantiharahap@gmail.com"
-                    class="button"
+                    href="mailto:salmadamayantiharahap@gmail.com"
+                    class="social-link"
                 >
-                    Email
+                    <span>Email</span>
+                    <span>↗</span>
                 </a>
+            </section>
 
-            </div>
+        </aside>
 
-        </div>
+        <!-- MAIN CONTENT -->
 
-
-        <!-- ================= MAIN ================= -->
-
-        <div class="main">
-
+        <main class="main">
 
             <!-- HOME -->
 
-            <div class="card" id="home">
+            <section class="card intro-card">
+                <p class="section-label">Hello, nice to meet you!</p>
 
-                <h2>Home</h2>
+                <h2>Welcome to my<br>little universe <span style="color:#c9879b">♡</span></h2>
 
-                <p>
+                <div class="divider"></div>
+
+                <p class="intro-text">
                     Selamat datang di website pribadi saya.
-                    Website ini dibuat menggunakan HTML dan CSS
-                    untuk menampilkan informasi pribadi,
-                    koleksi foto, galeri, dan kontak.
-                </p>
-
-            </div>
-
-
-            <!-- TENTANG SAYA -->
-
-            <div class="card" id="tentang">
-
-                <h2>Tentang Saya</h2>
-
-                <p>
-                    Halo, nama saya Salma Damayanti Harahap.
-                    Saya adalah mahasiswa Program Studi
-                    Teknologi Informasi.
-                </p>
-
-                <p>
-                    Saya tertarik dengan teknologi,
-                    pemrograman, desain website,
-                    dan berbagai hal yang berhubungan
-                    dengan dunia komputer.
-                </p>
-
-            </div>
-
-
-            <!-- ================================================= -->
-            <!-- ================= KOLEKSI SAYA ================== -->
-            <!-- ================================================= -->
-
-            <div class="card">
-
-                <h2>Koleksi Saya</h2>
-
-                <div class="image-slider">
-
-
-                    <div class="image-column">
-
-                        <img
-                            src="gambar16.jpeg"
-                            onclick="zoomImage(this)"
-                        >
-
-                        <img
-                            src="gambar2.jpeg"
-                            onclick="zoomImage(this)"
-                        >
-
-                        <img
-                            src="gambar3.jpeg"
-                            onclick="zoomImage(this)"
-                        >
-
-                        <img
-                            src="gambar22.jpeg"
-                            onclick="zoomImage(this)"
-                        >
-
-                    </div>
-
-
-                    <div class="image-column">
-
-                        <img
-                            src="gambar5.jpeg"
-                            onclick="zoomImage(this)"
-                        >
-
-                        <img
-                            src="gambar6.jpeg"
-                            onclick="zoomImage(this)"
-                        >
-
-                        <img
-                            src="gambar7.jpeg"
-                            onclick="zoomImage(this)"
-                        >
-
-                    </div>
-
-
-                    <div class="image-column">
-
-                        <img
-                            src="gambar8.jpeg"
-                            onclick="zoomImage(this)"
-                        >
-
-                        <img
-                            src="gambar9.jpeg"
-                            onclick="zoomImage(this)"
-                        >
-
-                        <img
-                            src="gambar10.jpeg"
-                            onclick="zoomImage(this)"
-                        >
-
-                    </div>
-
-
-                </div>
-
-            </div>
-
-
-            <!-- ================================================= -->
-            <!-- ================= EFEK GAMBAR =================== -->
-            <!-- ================================================= -->
-
-            <div class="card">
-
-                <h2>pemandangan dipantai</h2>
-
-                <div class="image-slider">
-
-
-                    <div class="image-column">
-
-                        <img
-                            src="gambar6.jpeg"
-                            class="gambar-efek"
-                            onclick="zoomImage(this)"
-                        >
-
-                        <img
-                            src="gambar8.jpeg"
-                            class="gambar-efek grayscale"
-                            onclick="zoomImage(this)"
-                        >
-
-                        <img
-                            src="gambar3.jpeg"
-                            class="gambar-efek opacity"
-                            onclick="zoomImage(this)"
-                        >
-
-                        <img
-                            src="gambar2.jpeg"
-                            class="gambar-efek"
-                            onclick="zoomImage(this)"
-                        >
-
-                    </div>
-
-
-                    <div class="image-column">
-
-                        <img
-                            src="gambar13.jpeg"
-                            class="gambar-efek grayscale"
-                            onclick="zoomImage(this)"
-                        >
-
-                        <img
-                            src="gambar23.jpeg"
-                            class="gambar-efek"
-                            onclick="zoomImage(this)"
-                        >
-
-                        <img
-                            src="gambar26.jpeg"
-                            class="gambar-efek opacity"
-                            onclick="zoomImage(this)"
-                        >
-
-                    </div>
-
-
-                    <div class="image-column">
-
-                        <img
-                            src="gambar24.jpeg"
-                            class="gambar-efek"
-                            onclick="zoomImage(this)"
-                        >
-
-                        <img
-                            src="gambar14.jpeg"
-                            class="gambar-efek grayscale"
-                            onclick="zoomImage(this)"
-                        >
-
-                        <img
-                            src="gambar11.jpeg"
-                            class="gambar-efek opacity"
-                            onclick="zoomImage(this)"
-                        >
-
-                    </div>
-
-
-                </div>
-
-            </div>
-
-
-            <!-- ================================================= -->
-            <!-- ============== RESPONSIVE GALLERY =============== -->
-            <!-- ================================================= -->
-
-            <div class="card" id="galeri">
-
-                <h2>cute cat gallery</h2>
-
-                <div class="gallery">
-
-                    <img
-                        src="gambar30.jpeg"
-                        onclick="zoomImage(this)"
-                    >
-
-                    <img
-                        src="gambar32.jpeg"
-                        onclick="zoomImage(this)"
-                    >
-
-                    <img
-                        src="gambar33.jpeg"
-                        onclick="zoomImage(this)"
-                    >
-
-                    <img
-                        src="gambar31.jpeg"
-                        onclick="zoomImage(this)"
-                    >
-
-                    <img
-                        src="gambar35.jpeg"
-                        onclick="zoomImage(this)"
-                    >
-
-                    <img
-                        src="gambar36.jpeg"
-                        onclick="zoomImage(this)"
-                    >
-
-                    <img
-                        src="gambar37.jpeg"
-                        onclick="zoomImage(this)"
-                    >
-
-                    <img
-                        src="gambar38.jpeg"
-                        onclick="zoomImage(this)"
-                    >
-
-                    <img
-                        src="gambar39.jpeg"
-                        onclick="zoomImage(this)"
-                    >
-
-                    <img
-                        src="gambar34.jpeg"
-                        onclick="zoomImage(this)"
-                    >
-
-                </div>
-
-            </div>
-
-
-            <!-- ================= KONTAK ================= -->
-
-            <div class="card" id="kontak">
-
-                <h2>Kontak Saya</h2>
-
-                <form>
-
-                    <label>
-                        Nama
-                    </label>
-
-                    <input
-                        type="text"
-                        placeholder="Masukkan nama"
-                    >
-
-
-                    <label>
-                        Email
-                    </label>
-
-                    <input
-                        type="email"
-                        placeholder="Masukkan email"
-                    >
-
-
-                    <label>
-                        Pesan
-                    </label>
-
-                    <textarea
-                        rows="5"
-                        placeholder="Masukkan pesan"
-                    ></textarea>
-
-
-                    <button type="submit">
-                        Kirim
-                    </button>
-
-                </form>
-
-            </div>
-
-
-        </div>
-
-    </div>
-
-
-    <!-- ================= FOOTER ================= -->
-
-    <footer>
-
-        <p>
-            © 2026 Website Pribadi Salma Damayanti Harahap
+                    Ini adalah ruang kecil untuk berbagi cerita,
+                    mengenal diri saya, menyimpan kenangan,
+                    dan mengabadikan hal hal sederhana yang saya sukai.
+                    <!-- TENTANG SAYA -->
+    <section class="section" id="tentang">
+      <div class="section-heading">
+        <span class="eyebrow">A LITTLE ABOUT ME</span>
+        <h2>My Little Story <span>♡</span></h2>
+        <p class="section-description">
+          Selamat datang di website pribadi saya.
+          Ini adalah ruang kecil untuk berbagi cerita,
+          mengenal diri saya, dan menyimpan kenangan
+          yang berarti dalam hidup saya.
         </p>
+      </div>
 
-    </footer>
+      <div class="about-card">
+        <div class="about-decoration">✿</div>
+        <span class="small-label">HELLO, NICE TO MEET YOU!</span>
+        <h3>Salma Damayanti Harahap</h3>
+        <p>
+          Saya adalah seorang mahasiswa yang senang belajar
+          hal-hal baru, terutama dalam dunia teknologi dan
+          kreativitas digital. Saya membuat website ini
+          sebagai tempat untuk menyimpan momen berharga,
+          berbagi hal yang saya sukai, dan mengekspresikan
+          diri melalui foto serta cerita sederhana.
+        </p>
+        <div class="about-signature">with love, Salma ♡</div>
+      </div>
+    </section>
 
+    <!-- MENYIMPAN KENANGAN -->
+    <section class="section" id="koleksi">
+      <div class="section-heading">
+        <span class="eyebrow">MY PHOTO DIARY</span>
+        <h2>Menyimpan <span>Kenangan</span></h2>
+        <p class="section-description">
+          Potongan kecil cerita dalam bentuk foto,
+          untuk mengingat momen-momen yang berharga.
+        </p>
+      </div>
 
-    <!-- ================================================= -->
-    <!-- ================= MODAL FOTO ==================== -->
-    <!-- ================================================= -->
+      <div class="memory-grid">
+        <div class="memory-item">
+          <img src="gambar16.jpeg" alt="Kenangan 1" onclick="openModal(this)">
+          <span>little moments ♡</span>
+        </div>
+        <div class="memory-item">
+          <img src="gambar2.jpeg" alt="Kenangan 2" onclick="openModal(this)">
+          <span>sweet memories</span>
+        </div>
+        <div class="memory-item">
+          <img src="gambar3.jpeg" alt="Kenangan 3" onclick="openModal(this)">
+          <span>my favorite day</span>
+        </div>
+        <div class="memory-item">
+          <img src="gambar22.jpeg" alt="Kenangan 4" onclick="openModal(this)">
+          <span>captured moments</span>
+        </div>
+        <div class="memory-item">
+          <img src="gambar5.jpeg" alt="Kenangan 5" onclick="openModal(this)">
+          <span>dear memories</span>
+        </div>
+        <div class="memory-item">
+          <img src="gambar6.jpeg" alt="Kenangan 6" onclick="openModal(this)">
+          <span>happiness</span>
+        </div>
+        <div class="memory-item">
+          <img src="gambar7.jpeg" alt="Kenangan 7" onclick="openModal(this)">
+          <span>one lovely day</span>
+        </div>
+        <div class="memory-item">
+          <img src="gambar8.jpeg" alt="Kenangan 8" onclick="openModal(this)">
+          <span>my little world</span>
+        </div>
+        <div class="memory-item">
+          <img src="gambar9.jpeg" alt="Kenangan 9" onclick="openModal(this)">
+          <span>forever remembered</span>
+        </div>
+        <div class="memory-item">
+          <img src="gambar10.jpeg" alt="Kenangan 10" onclick="openModal(this)">
+          <span>another story</span>
+        </div>
+      </div>
+    </section>
 
-    <div
-        id="imageModal"
-        class="modal"
-    >
+    <!-- EFEK PADA GAMBAR -->
+    <section class="section" id="efek">
+      <div class="section-heading">
+        <span class="eyebrow">A TOUCH OF NATURE</span>
+        <h2>Pemandangan <span>di Pantai</span></h2>
+        <p class="section-description">
+          Menikmati keindahan alam melalui kumpulan
+          foto dengan sentuhan efek yang berbeda.
+        </p>
+      </div>
 
-        <span
-            class="close"
-            onclick="closeZoom()"
-        >
-            &times;
-        </span>
+      <div class="effect-grid">
+        <div class="effect-item effect-grayscale">
+          <img src="gambar6.jpeg" alt="Pantai 1" onclick="openModal(this)">
+          <span>Grayscale</span>
+        </div>
+        <div class="effect-item effect-bright">
+          <img src="gambar8.jpeg" alt="Pantai 2" onclick="openModal(this)">
+          <span>Soft Light</span>
+        </div>
+        <div class="effect-item effect-zoom">
+          <img src="gambar3.jpeg" alt="Pantai 3" onclick="openModal(this)">
+          <span>Zoom Effect</span>
+        </div>
+        <div class="effect-item effect-sepia">
+          <img src="gambar2.jpeg" alt="Pantai 4" onclick="openModal(this)">
+          <span>Vintage</span>
+        </div>
+        <div class="effect-item effect-bright">
+          <img src="gambar13.jpeg" alt="Pantai 5" onclick="openModal(this)">
+          <span>Bright</span>
+        </div>
+        <div class="effect-item effect-grayscale">
+          <img src="gambar23.jpeg" alt="Pantai 6" onclick="openModal(this)">
+          <span>Classic</span>
+        </div>
+        <div class="effect-item effect-zoom">
+          <img src="gambar26.jpeg" alt="Pantai 7" onclick="openModal(this)">
+          <span>Focus</span>
+        </div>
+        <div class="effect-item effect-sepia">
+          <img src="gambar24.jpeg" alt="Pantai 8" onclick="openModal(this)">
+          <span>Warm Tone</span>
+        </div>
+        <div class="effect-item effect-bright">
+          <img src="gambar14.jpeg" alt="Pantai 9" onclick="openModal(this)">
+          <span>Dreamy</span>
+        </div>
+        <div class="effect-item effect-zoom">
+          <img src="gambar11.jpeg" alt="Pantai 10" onclick="openModal(this)">
+          <span>Nature</span>
+        </div>
+      </div>
+    </section>
 
-        <img
-            id="zoomedImage"
-        >
+    <!-- GALERI KUCING -->
+    <section class="section" id="kucing">
+      <div class="section-heading">
+        <span class="eyebrow">CUTE LITTLE FRIENDS</span>
+        <h2>Cute Cat <span>Gallery</span></h2>
+        <p class="section-description">
+          Sudut kecil untuk kumpulan foto kucing lucu
+          yang menggemaskan dan bikin senyum.
+        </p>
+      </div>
 
-    </div>
+      <div class="cat-grid">
+        <img src="gambar30.jpeg" alt="Kucing 1" onclick="openModal(this)">
+        <img src="gambar32.jpeg" alt="Kucing 2" onclick="openModal(this)">
+        <img src="gambar33.jpeg" alt="Kucing 3" onclick="openModal(this)">
+        <img src="gambar31.jpeg" alt="Kucing 4" onclick="openModal(this)">
+        <img src="gambar35.jpeg" alt="Kucing 5" onclick="openModal(this)">
+        <img src="gambar36.jpeg" alt="Kucing 6" onclick="openModal(this)">
+        <img src="gambar37.jpeg" alt="Kucing 7" onclick="openModal(this)">
+        <img src="gambar38.jpeg" alt="Kucing 8" onclick="openModal(this)">
+        <img src="gambar39.jpeg" alt="Kucing 9" onclick="openModal(this)">
+        <img src="gambar34.jpeg" alt="Kucing 10" onclick="openModal(this)">
+      </div>
+    </section>
 
+    <!-- KONTAK -->
+    <section class="section" id="kontak">
+      <div class="section-heading">
+        <span class="eyebrow">LET'S CONNECT</span>
+        <h2>Say Hello <span>♡</span></h2>
+        <p class="section-description">
+          Punya sesuatu untuk disampaikan?
+          Kamu bisa menghubungi saya melalui tautan berikut.
+        </p>
+      </div>
 
-    <!-- ================= JAVASCRIPT ================= -->
+      <div class="contact-card">
+        <a href="https://www.instagram.com/"
+           target="_blank" rel="noopener noreferrer">
+          <span class="contact-icon">♡</span>
+          <span>
+            <strong>Instagram</strong>
+            <small>Let's connect on Instagram</small>
+          </span>
+          <span class="contact-arrow">↗</span>
+        </a>
 
-    <script>
+        <a href="https://wa.me/628xxxxxxxxxx"
+           target="_blank" rel="noopener noreferrer">
+          <span class="contact-icon">✆</span>
+          <span>
+            <strong>WhatsApp</strong>
+            <small>Send me a message</small>
+          </span>
+          <span class="contact-arrow">↗</span>
+        </a>
 
-        function zoomImage(image) {
+        <a href="mailto:emailkamu@gmail.com">
+          <span class="contact-icon">✉</span>
+          <span>
+            <strong>Email</strong>
+            <small>Write me an email</small>
+          </span>
+          <span class="contact-arrow">↗</span>
+        </a>
+      </div>
+    </section>
 
-            var modal =
-                document.getElementById("imageModal");
+  </main>
 
-            var zoomedImage =
-                document.getElementById("zoomedImage");
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="footer-flower">✿</div>
+    <h3>Salma's Little Corner</h3>
+    <p>A little space filled with stories and memories.</p>
+    <p class="footer-copy">
+      © 2026 Salma Damayanti Harahap · Made with ♡
+    </p>
+  </footer>
 
-            modal.style.display = "block";
+  <!-- MODAL FOTO -->
+  <div id="imageModal" class="modal" onclick="closeModal()">
+    <button class="close-modal" type="button"
+            aria-label="Tutup foto"
+            onclick="closeModal()">&times;</button>
+    <img id="modalImage" class="modal-content" alt="Foto diperbesar">
+    <p class="modal-caption">a little memory ♡</p>
+  </div>
 
-            zoomedImage.src = image.src;
+  <!-- JAVASCRIPT -->
+  <script>
+    function openModal(image) {
+      const modal = document.getElementById("imageModal");
+      const modalImage = document.getElementById("modalImage");
 
-        }
+      modalImage.src = image.src;
+      modalImage.alt = image.alt;
+      modal.style.display = "flex";
+      document.body.style.overflow = "hidden";
+    }
 
+    function closeModal() {
+      document.getElementById("imageModal").style.display = "none";
+      document.body.style.overflow = "";
+    }
 
-        function closeZoom() {
-
-            document.getElementById("imageModal")
-                .style.display = "none";
-
-        }
-
-
-        window.onclick = function(event) {
-
-            var modal =
-                document.getElementById("imageModal");
-
-            if (event.target == modal) {
-
-                modal.style.display = "none";
-
-            }
-
-        }
-
-    </script>
-
+    document.addEventListener("keydown", function(event) {
+      if (event.key === "Escape") {
+        closeModal();
+      }
+    });
+  </script>
 
 </body>
 </html>
